@@ -1,5 +1,3 @@
-const container = document.querySelector(".container");
-
 let createGrid = length => {
     container.setAttribute("style", `grid-template: repeat(${length},1fr)/repeat(${length},1fr)`);
     for (let i = 0; i < length ** 2; ++i) {
@@ -13,10 +11,8 @@ let createGrid = length => {
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (max - min)) + min;
 }
-
-let colorMode = false;
 
 let createEventListeners = container => {
     container.forEach(bx => {
@@ -44,17 +40,16 @@ let clearGrid = () => {
     });
 }
 
-createGrid(16);
-let boxes = document.querySelectorAll(".box");
-createEventListeners(boxes);
-
-
 const reset = document.querySelector(".clear");
 reset.addEventListener("click", clearGrid);
 
 const newGrid = document.querySelector(".new-grid");
 newGrid.addEventListener("click", () => {
-    let length = parseInt(prompt("enter a length", 16));
+    let length;
+    do {
+        length = parseInt(prompt("enter a length less than 64", 16));
+    } while (isNaN(length) || length > 64 || length < 1);
+    
     createGrid(length);
     clearGrid();
     boxes = document.querySelectorAll(".box");
@@ -62,5 +57,19 @@ newGrid.addEventListener("click", () => {
 });
 
 const toggleColor = document.querySelector(".color");
-toggleColor.addEventListener("click", () => { colorMode = !colorMode;
-                            createEventListeners(boxes); });
+toggleColor.addEventListener("click", () => { 
+    colorMode = !colorMode;
+    createEventListeners(boxes); 
+});
+
+const container = document.querySelector(".container");
+let colorMode = false;
+createGrid(16);
+let boxes = document.querySelectorAll(".box");
+createEventListeners(boxes);
+
+
+
+
+
+

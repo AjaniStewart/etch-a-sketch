@@ -1,0 +1,11 @@
+.container {
+    width: 800px;
+    height: 700px;
+    border: 1px solid black;
+    display: grid;
+}
+
+.box {
+    background-color: white;
+    /* border: 1px solid black; */
+}

@@ -19,7 +19,7 @@ let createEventListeners = container => {
         if (!colorMode)
         {
             let color = 255;
-            bx.addEventListener("mouseover",e => {
+            bx.addEventListener("mouseover", e => {
                  color -= 50;
                  e.target.setAttribute("style", `background: rgb(${color},${color},${color})`);
             });
@@ -38,6 +38,7 @@ let clearGrid = () => {
     boxes.forEach(bx => {
         bx.setAttribute("style", "background: rgb(255,255,255)");
     });
+    createEventListeners(boxes);
 }
 
 const reset = document.querySelector(".clear");
